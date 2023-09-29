@@ -1,0 +1,68 @@
+{% extends 'base/main.html' %}
+{% block content %}
+
+<div class="customHeader">
+
+    <h1>Workout Page:</h1>
+
+    <a href="{% url 'paginaPrincipala' %}">Go Back</a>
+
+</div>
+
+
+<hr>
+
+<div class="customBody">
+
+<a href="{% url 'creareWorkout' %}">Add Workout</a>
+
+    <table>
+    <tr>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+    </tr>
+</table>
+
+<form method="GET">
+    <input type='text' name='search-area' value="{{search_input}}">
+    <input type='submit' value='Search by Date'>
+</form>
+
+    <table>
+    <tr>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+    </tr>
+</table>
+
+<table>
+    <tr>
+        <th>Workouts:</th>
+    </tr>
+    {%for lista in ListaWorkout %}
+    <tr>
+        <td>{{lista.title}},&nbsp&nbsp&nbsp</td>
+        <td>{{lista.date}}&nbsp&nbsp&nbsp</td>
+        <td><a href="{% url 'updateWorkout' lista.id %}">Edit</a></td>
+        <td><a href="{% url 'deleteWorkout' lista.id %}">Delete</a></td>
+    </tr>
+    {% empty %}
+    <h3>No items in list</h3>
+    {% endfor %}
+</table>
+
+</div>
+
+{% endblock content %}
+
+

@@ -1,0 +1,106 @@
+{% extends 'base/main.html' %}
+{% block content %}
+
+
+<div class="customHeader">
+
+    <h1> Vizualizare a istoricului claselor pentru {{request.user.username}}  </h1>
+
+    <a href="{% url 'paginaPrincipalaUser' %}"> Go back </a>
+
+</div>
+
+
+<hr>
+
+
+<div class="customBody">
+
+
+
+<table>
+
+    <tr>
+
+    <form method="GET">
+        <p> Search by date: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <input type='text' name='Search-Area1' value='{{search_inputHtml1}}'>
+           &nbsp&nbsp&nbsp <input type='submit' value='Search'> </p>
+    </form>
+
+
+    <form method="GET">
+        <p> Search by workout name: &nbsp&nbsp&nbsp <input type='text' name='Search-Area2' value='{{search_inputHtml2}}'>
+           &nbsp&nbsp&nbsp <input type='submit' value='Search'> </p>
+    </form>
+
+
+    <form method="GET">
+        <p> Search by class name: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+            <input type='text' name='Search-Area3' value='{{search_inputHtml3}}'>
+           &nbsp&nbsp&nbsp <input type='submit' value='Search'> </p>
+    </form>
+
+    </tr>
+
+    <tr> </tr>
+    <tr> </tr>
+    <tr> </tr>
+    <tr> </tr>
+    <tr> </tr>
+    <br>
+
+    <tr>
+        <p> </p>
+        <h2> Lista claselor precedente: </h2>
+    </tr>
+
+
+    <tr> <p> </p> </tr>
+    <tr> </tr>
+    <tr> </tr>
+    <tr> </tr>
+    <tr> </tr>
+    <tr> </tr>
+
+
+    {% for lista in ListaClasa %}
+
+
+    <tr>
+
+    <td>{{lista.title}},&nbsp&nbsp&nbsp</td>
+
+    <td>{{lista.workout.title}}, &nbsp&nbsp&nbsp</td>
+
+    <td>{{lista.workout.date}}, &nbsp&nbsp&nbsp</td>
+
+    <td>{{lista.oraInceput}}, &nbsp&nbsp&nbsp&nbsp&nbsp</td>
+
+    <td>{{lista.workout.description}} &nbsp&nbsp&nbsp&nbsp&nbsp ;</td>
+
+    {% empty %}
+
+    <h3> Nu ati participat la clase in trecut! </h3>
+
+    {% endfor %}
+
+    </tr>
+
+
+    <tr> </tr>
+    <tr> </tr>
+    <tr> </tr>
+    <tr> </tr>
+    <tr> </tr>
+
+
+</table>
+
+
+
+
+</div>
+
+
+{% endblock content %}

@@ -1,0 +1,79 @@
+
+
+{% extends 'base/main.html' %}
+{% block content %}
+
+<div class="customHeader">
+    <div>
+        <h1>Hello, {{request.user|title}}</h1>
+    </div>
+    {% if request.user.is_authenticated%}
+    <a href="{% url 'logout' %}">Logout</a>
+    {% else %}
+    <a href="{% url 'login' %}">Login</a>
+    {% endif %}
+
+</div>
+
+<hr>
+
+<div class="customBody">
+
+<h1> Clase disponibile: </h1>
+<a href="{% url 'creare' %}">Add Gym Class</a>
+
+<table>
+    <tr>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+    </tr>
+</table>
+
+<form method="GET">
+    <!--Pentru ca type-ul e text, avem un textfield-->
+    <input type='text' name='search-area' value="{{search_input}}">
+    <input type='submit' value='Search by Hour'>
+</form>
+
+<table>
+    <tr>
+        <th>Clase:</th>
+    </tr>
+    {%for lista in ListaPrincipala %}
+    <tr>
+        <td>{{lista.title}},&nbsp&nbsp&nbsp</td>
+        <td>{{lista.workout.title}},&nbsp&nbsp&nbsp</td>
+        <td>{{lista.oraInceput}},&nbsp&nbsp&nbsp</td>
+        <td>{{lista.listaParticipanti}}&nbsp&nbsp&nbsp&nbsp&nbsp</td>
+        <td><a href="{% url 'update' lista.id %}">Edit</a></td>
+        <td><a href="{% url 'delete' lista.id %}">Delete</a></td>
+    </tr>
+    {% empty %}
+    <h3>No items in list</h3>
+    {% endfor %}
+</table>
+
+<table>
+    <tr>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+    </tr>
+</table>
+
+<a href="{% url 'workoutPage' %}">Workout Page</a>
+
+</div>
+
+{% endblock content %}
+
+

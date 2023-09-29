@@ -1,0 +1,101 @@
+{% extends 'base/main.html' %}
+{% block content %}
+
+<div class="customHeader">
+    <div>
+        <h1>Hello, {{request.user.username}}</h1>
+
+    </div>
+    {% if request.user.is_authenticated%}
+    <a href="{% url 'logout' %}">Logout</a>
+    {% else %}
+    <a href="{% url 'login' %}">Login</a>
+    {% endif %}
+
+</div>
+
+<hr>
+
+<div class="customBody">
+
+
+     <h2>Vizualizare clase disponibile in data de astazi - {{DataActuala}}:</h2>
+<!-- <a href="{% url 'creare' %}">Add Gym Class</a> -->
+
+<form method="GET">
+    <!--Pentru ca type-ul e text, avem un textfield-->
+    <input type='text' name='search-area' value="{{search_input}}">
+    <input type='submit' value='Search by Hour'>
+</form>
+
+    <table>
+    <tr>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+    </tr>
+</table>
+
+<table>
+    <tr>
+        <th>Gym Classes:</th>
+    </tr>
+    {%for lista in ListaPrincipala %}
+    <tr>
+        <td>{{lista.title}},&nbsp&nbsp&nbsp</td>
+        <td>{{lista.workout.title}},&nbsp&nbsp&nbsp</td>
+        <td>{{lista.oraInceput}},&nbsp&nbsp&nbsp</td>
+
+        {%if lista.listaParticipanti == None%}
+        <td>Clasa goala,&nbsp&nbsp&nbsp</td>
+        {% else %}
+        <td>{{lista.listaParticipanti}}&nbsp&nbsp&nbsp</td>
+        {% endif %}
+
+        {%if lista.complete%}
+        <td>Full Class&nbsp&nbsp&nbsp</td>
+        {% else %}
+        {%if lista.counterParticipanti is not None%}
+        <td>{{lista.counterParticipanti}} / 5 &nbsp&nbsp&nbsp</td>
+        {% else %}
+        <td>0 / 5 &nbsp&nbsp&nbsp</td>
+        {% endif %}
+        {% endif %}
+
+        <td><input type='checkbox' {%if clasaRezervata.title == lista.title %}checked{% endif %} onclick="return false">&nbsp&nbsp&nbsp</td>
+
+        <td><a href="{% url 'viewWorkout' lista.id %}">View Workout</a></td>
+
+    </tr>
+    {% empty %}
+    <h3>No items in list</h3>
+    {% endfor %}
+
+</table>
+
+
+<table>
+    <tr>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+    </tr>
+</table>
+
+    <!--TODO istoric-->
+
+<a href="{% url 'viewClassAttendanceList'%}">View Class Attendance List</a>
+
+</div>
+
+{% endblock content %}
+
+

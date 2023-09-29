@@ -1,0 +1,78 @@
+<!--Aici vom face template pentru toate celelalte pagini. Cam asa o sa arate toate-->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>To Do Items:</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #FAFAFA;
+            font-family: 'Playfair Display', serif;
+            padding-top: 50px;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        {
+            font-family: 'Raleway', sans-serif;
+        }
+
+
+        .container
+        {
+            max-width: 1000px;
+            height:100%;
+            margin: auto;
+            background-color: #fff;
+            -webkit-box-shadow: 2px 2px 13px -4px rgba(0, 0, 0, 0.21);
+            box-shadow: 2px 2px 13px -4px rgba(0, 0, 0, 0.21);
+        }
+
+        .customHeader
+        {
+            display: flex;
+            justify-content: space-between;
+            color: #ffff;
+            padding: 10px;
+            border-radius: 5px 5px 0 0;
+            background: linear-gradient(90deg, #5a7cc4 0%, #5a7cc4 43%, #5a7cc4 100%);
+        }
+
+        .customHeader a
+        {
+            color: rgb(247,247,247);
+            text-decoration: none;
+        }
+
+        .customBody
+        {
+            justify-content: space-between;
+            text-align: left;
+            padding: 30px;
+
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        {% block content %}
+
+        {% endblock content %}
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,57 @@
+{% extends 'base/main.html' %}
+{% block content %}
+<div class="customHeader">
+    <h3>Workout-ul selectat:</h3>
+    <a href="{% url 'paginaPrincipalaUser' %}">Go Back</a>
+</div>
+
+<div class="customBody">
+
+<table>
+    <tr> <td>Titlu:&nbsp&nbsp&nbsp{{ListaPrincipala.workout.title}}</td> </tr>
+    <tr></tr>
+    <tr></tr>
+    <tr></tr>
+    <tr></tr>
+    <tr></tr>
+    <tr><td>Data:&nbsp&nbsp&nbsp{{ListaPrincipala.workout.date}}</td></tr>
+    <tr></tr>
+    <tr></tr>
+    <tr></tr>
+    <tr></tr>
+    <tr></tr>
+    <tr><td>Descriere:&nbsp&nbsp&nbsp{{ListaPrincipala.workout.description}}</td></tr>
+    <tr></tr>
+    <tr></tr>
+    <tr></tr>
+    <tr></tr>
+    <tr></tr>
+    <tr></tr>
+    <tr></tr>
+    <tr></tr>
+    <tr></tr>
+    <tr></tr>
+    <tr><td><form method="POST" action="{% url 'reserveSpot' block_id=ListaPrincipala.id %}">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" value="Reserve Class">
+</form></td></tr>
+    <tr></tr>
+    <tr></tr>
+    <tr></tr>
+    <tr></tr>
+    <tr></tr>
+<!-- TODO -->
+            <tr>
+                <td>
+                    <form method="POST" action="{% url 'cancelReservation' block_id=ListaPrincipala.id %}">
+                        {% csrf_token %}
+                        {{form.as_p}}
+                        <input type="submit" value="Cancel Reservation">
+                    </form>
+                </td>
+            </tr></tr>
+</table>
+
+</div>
+{% endblock content %}
